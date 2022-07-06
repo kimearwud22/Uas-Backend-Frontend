@@ -6,9 +6,8 @@ import styles from "../../styles/Home.module.css";
 import UserContent from '../components/user/userContent';
 import Header from '../components/user/Header';
 // import LeftNavbar from "./components/LeftNavbar";
-import InventarisByKode from '../components/user/InventarisByKode';
-const UserInventaris =({date})=>{
-    {Array.isArray(date)? date=date: date=[date]}
+const UserInventaris =()=>{
+    
     return(
         <div>
         <div className={styles.container}>
@@ -19,7 +18,6 @@ const UserInventaris =({date})=>{
 			</Head>
 			<div className={styles.container}>
 				<Header />
-				<InventarisByKode/>
 				<hr />
 				<UserContent/>
 			</div>
@@ -27,18 +25,6 @@ const UserInventaris =({date})=>{
     </div>
     )
 }
-export async function getServerSideProps(context) {
-    const kode = context.query.kode
-    let url = 'http://localhost:5000/inventaris'
-    if(typeof kode === 'string'){
-        url = `http://localhost:5000/inventaris/${kode}`
-    }
-    const res = await fetch(url)
-    const data = await res.json()
-    return {
-        props:
-            {date}
-    }
-}
+
 
 export default UserInventaris;

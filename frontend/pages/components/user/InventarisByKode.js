@@ -9,7 +9,7 @@ const InventarisByKode =(date)=> {
     const getByKode =(e)=>{
         e.preventDefault()
         router.push({
-            pathname:'inventaris',
+            pathname:'userContent',
             query:{
                 'kode':kode
             }

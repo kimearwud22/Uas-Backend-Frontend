@@ -3,8 +3,10 @@ import styles from "../../../styles/Home.module.css";
 import styles1 from "../../../styles/User.module.css";
 import axios from 'axios'
 import Content from './Content';
+import InventarisByKode from './InventarisByKode';
 
 const UserContent = ({ date }) => {
+    {Array.isArray(date) ? console.log(date) : console.log(date)}
     const [data, setData] = useState([])
 
     const getAllInventaris = () => {
@@ -24,33 +26,13 @@ const UserContent = ({ date }) => {
     }
         , [])
 
-    //how to make search to kode in nextjs
-    const [search, setSearch] = useState('')
-    const [searchData, setSearchData] = useState([])
-    const handleSearch = (e) => {
-        setSearch(e.target.value)
-    }
-    useEffect(() => {
-        if (search === '') {
-            setSearchData(data)
-        }
-        else {
-            setSearchData(data.filter(item => item.kode.toLowerCase().includes(search.toLowerCase())))
-        }
-    }
-        , [search, data])
-
-    const submitSearch = (e) => {
-        e.preventDefault()
-    }
-
 
     return (
         <div>
             <div className={styles.contentcontainer}>
                 <div className={styles1.row}>
-                    
-                    <div className="col-md-15">
+                    <InventarisByKode/>
+                    <div className="col-md-15 mt-3">
                         <div className="card">
                             <div className={styles1.cardheader}>
                                 <h4 className="card-title">List Inventaris</h4>
@@ -122,6 +104,10 @@ const UserContent = ({ date }) => {
             <Content />
         </div>
     )
+}
+export async function getServerSideProps(context) {
+    const { data } = await axios.get('http://localhost:5000/inventaris')
+    return { props: { data } }
 }
 
 export default UserContent

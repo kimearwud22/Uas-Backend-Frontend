@@ -17,16 +17,16 @@ function UpdatePinjam() {
     const { kode, pegawai, tanggal, status, } = router.query;
 
     useEffect(() => {
-        if (typeof kode == 'string') {
+        if (typeof kode === 'string') {
             setKode(kode);
         }
-        if (typeof pegawai == 'string') {
+        if (typeof pegawai === 'string') {
             setPegawai(pegawai);
         }
-        if (typeof tanggal == 'string') {
+        if (typeof tanggal === 'string') {
             setTanggal(tanggal);
         }
-        if (typeof status == 'string') {
+        if (typeof status === 'string') {
             setStatus(status);
         }
     }, [kode, pegawai, tanggal, status]);
@@ -71,7 +71,7 @@ function UpdatePinjam() {
                             </div>
                             <div className="form-group">
                                 <label>Tanggal</label>
-                                <input type="text" className="form-control" value={_tanggal} onChange={(e) => setTanggal(e.target.value)} />
+                                <input type="date" className="form-control" value={_tanggal} onChange={(e) => setTanggal(e.target.value)} />
                             </div>
                             <div className="form-group">
                                 <label>Status</label>
