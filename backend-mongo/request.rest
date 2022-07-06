@@ -1,0 +1,10 @@
+
+GET http://localhost:5000/inventaris
+###
+PUT  http://localhost:5000/inventaris/pinjam/A02
+Content-Type: application/json
+    {
+    "pegawai":"eko",
+    "tanggal":"2020-01-01",
+    "status":"dipinjam"
+    }
